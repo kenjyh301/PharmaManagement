@@ -25,8 +25,6 @@ public class CategoryAddForm {
     private JPanel CategoryAddPanel;
     public Service service;
 
-
-
     public CategoryAddForm() {
         service= new Service();
 
@@ -46,16 +44,19 @@ public class CategoryAddForm {
                     amount= Integer.parseInt(amountText.getText());
                 }catch (Exception exception){
                     log.info("Amount is not number: {}",amountText.getText());
+                    JOptionPane.showMessageDialog(null,"Số lượng không chính xác");
                     return;
                 }
 
                 if(amount>0){
                     Pharma pharma= new Pharma(name,group,amount);
+                    Pharma existPharma= service.findPharma(name+".json",group);
+                    if(existPharma!=null)pharma.setAmount(existPharma.getAmount()+pharma.getAmount());
                     service.SavePharma(pharma);
                 }else{
+                    JOptionPane.showMessageDialog(null,"Số lượng không chính xác");
                     log.info("Amount is below zero: {}",amount);
                 }
-
             }
         });
         EraseButton.addActionListener(new ActionListener() {

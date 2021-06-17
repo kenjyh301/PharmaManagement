@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="PharmaManagement" />
         <module name="Pharma" />
+        <module name="PharmaManagerment" />
       </profile>
     </annotationProcessing>
   </component>
