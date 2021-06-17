@@ -1,11 +1,13 @@
 package main.java;
 
+
+import lombok.extern.slf4j.Slf4j;
 import main.java.Form.CategoryAddForm;
-import main.java.Service.CategoryAddService;
 
 import javax.swing.*;
 import java.awt.*;
 
+@Slf4j
 public class PharmaManagement {
 
     public static void main(String arg[]){
@@ -16,5 +18,6 @@ public class PharmaManagement {
         frame.pack();
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
+
     }
 }
