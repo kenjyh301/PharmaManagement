@@ -22,6 +22,7 @@ public class CategoryListForm {
 
     public CategoryListForm() {
         service= new Service();
+        searchButton= new JButton("Tìm");
         searchButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.

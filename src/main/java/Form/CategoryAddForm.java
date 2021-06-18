@@ -27,7 +27,7 @@ public class CategoryAddForm {
 
     public CategoryAddForm() {
         service= new Service();
-
+        addButton= new JButton("Thêm");
         addButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
