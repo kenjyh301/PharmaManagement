@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import main.java.Service.Service;
 
+import static main.java.PharmaManagement.mainFunction;
+
 
 @Data
 @Slf4j
@@ -26,9 +28,36 @@ public class CategoryAddForm {
     private JPanel CategoryAddPanel;
     public Service service;
 
-    public CategoryAddForm() {
+    public CategoryAddForm(JFrame frame) {
         service= new Service();
-        addButton= new JButton("Thêm");
+//        addButton= new JButton("Thêm");
+
+        EraseButton.addActionListener(new ActionListener() {
+            /**
+             * Invoked when an action occurs.
+             *
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nameText.setText("");
+                groupText.setText("");
+                amountText.setText("");
+            }
+        });
+        ReturnButton.addActionListener(new ActionListener() {
+            /**
+             * Invoked when an action occurs.
+             *
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setContentPane(mainFunction.getFormPanel());
+                frame.setBounds(100,100,450,300);
+                frame.setVisible(true);
+            }
+        });
         addButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
@@ -58,29 +87,11 @@ public class CategoryAddForm {
                 }
             }
         });
-        EraseButton.addActionListener(new ActionListener() {
-            /**
-             * Invoked when an action occurs.
-             *
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                nameText.setText("");
-                groupText.setText("");
-                amountText.setText("");
-            }
-        });
-        ReturnButton.addActionListener(new ActionListener() {
-            /**
-             * Invoked when an action occurs.
-             *
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    }
 
-            }
-        });
+    public void InitForm() {
+        nameText.setText("");
+        groupText.setText("");
+        amountText.setText("");
     }
 }

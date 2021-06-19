@@ -4,6 +4,7 @@ package main.java;
 import lombok.extern.slf4j.Slf4j;
 import main.java.Form.CategoryAddForm;
 import main.java.Form.CategoryListForm;
+import main.java.Form.CustomerForm;
 import main.java.Form.MainFunction;
 import main.java.Service.Service;
 
@@ -14,9 +15,10 @@ import java.io.IOException;
 @Slf4j
 public class PharmaManagement {
     static JFrame frame= new JFrame("MainFunction");
-    static CategoryAddForm categoryAddForm= new CategoryAddForm();
-    static CategoryListForm categoryListForm= new CategoryListForm();
-    static MainFunction mainFunction=new MainFunction(frame,categoryAddForm,categoryListForm);
+    static CategoryAddForm categoryAddForm= new CategoryAddForm(frame);
+    static CategoryListForm categoryListForm= new CategoryListForm(frame);
+    static CustomerForm customerForm=new CustomerForm(frame);
+    public static MainFunction mainFunction=new MainFunction(frame,categoryAddForm,categoryListForm,customerForm);
 
 
     public static void main(String arg[]) throws IOException {

@@ -2,7 +2,6 @@ package main.java.Service;
 
 import com.google.gson.Gson;
 
-import jdk.nashorn.internal.scripts.JO;
 import lombok.extern.slf4j.Slf4j;
 import main.java.Model.Pharma;
 
@@ -83,7 +82,7 @@ public class Service {
         if(existPharma==null) {
             log.info("Pharma not exist");
             if(type!=UpdateType.CREATE)return;
-        }else type=UpdateType.INSERT;
+        }
 
         if(type==UpdateType.INSERT){
             existPharma.setAmount(existPharma.getAmount()+pharma.getAmount());
@@ -95,11 +94,21 @@ public class Service {
                 return;
             }
         }else if(type==UpdateType.CREATE){
-            SavePharma(existPharma);
+            existPharma=pharma;
         }else{
             log.info("Update type not found");
             return;
         }
         SavePharma(existPharma);
+    }
+
+    public List<String> GetAllGroup(){
+        ArrayList<String> ret=new ArrayList<String>();
+        String dataName= "D:\\PharmaData\\";
+        File dataFolder= new File(dataName);
+        for(File group:dataFolder.listFiles()){
+            ret.add(group.getName());
+        }
+        return ret;
     }
 }

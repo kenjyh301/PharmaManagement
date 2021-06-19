@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class MainFunction {
     private JButton cateAddButton;
     private JButton cateListButton;
-    private JButton button3;
+    private JButton addPrescriptionButton;
     private JPanel formPanel;
 
     private void createUIComponents() {
@@ -21,7 +21,7 @@ public class MainFunction {
         formPanel.setSize(200,100);
     }
 
-    public MainFunction(JFrame frame,CategoryAddForm categoryAddForm,CategoryListForm categoryListForm){
+    public MainFunction(JFrame frame,CategoryAddForm categoryAddForm,CategoryListForm categoryListForm,CustomerForm customerForm){
 
 
         cateAddButton.addActionListener(new ActionListener() {
@@ -32,6 +32,7 @@ public class MainFunction {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                categoryAddForm.InitForm();
                 frame.setContentPane(categoryAddForm.getCategoryAddPanel());
                 frame.pack();
                 frame.setVisible(true);
@@ -45,7 +46,21 @@ public class MainFunction {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                categoryListForm.InitForm();
                 frame.setContentPane(categoryListForm.getPanel1());
+                frame.pack();
+                frame.setVisible(true);
+            }
+        });
+        addPrescriptionButton.addActionListener(new ActionListener() {
+            /**
+             * Invoked when an action occurs.
+             *
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setContentPane(customerForm.getFormPanel());
                 frame.pack();
                 frame.setVisible(true);
             }
