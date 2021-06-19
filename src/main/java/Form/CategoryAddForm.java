@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import main.java.Service.Service;
 
+
 @Data
 @Slf4j
 public class CategoryAddForm {
@@ -50,9 +51,7 @@ public class CategoryAddForm {
 
                 if(amount>0){
                     Pharma pharma= new Pharma(name,group,amount);
-                    Pharma existPharma= service.findPharma(name+".json",group);
-                    if(existPharma!=null)pharma.setAmount(existPharma.getAmount()+pharma.getAmount());
-                    service.SavePharma(pharma);
+                    service.UpdatePharma(pharma, Service.UpdateType.CREATE);
                 }else{
                     JOptionPane.showMessageDialog(null,"Số lượng không chính xác");
                     log.info("Amount is below zero: {}",amount);

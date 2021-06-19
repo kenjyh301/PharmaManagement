@@ -39,7 +39,7 @@ public class CategoryListForm {
                     JOptionPane.showMessageDialog(null,"Nhóm không được để trống");
                 }else{
                     if(nameText.getText().equals("")){
-                        List<Pharma> pharmaList= service.findAllGroup(groupText.getText());
+                        List<Pharma> pharmaList= service.FindAllGroup(groupText.getText());
                         if(pharmaList.size()==0)JOptionPane.showMessageDialog(null,"Nhóm không tồn tại");
                         else{
                             for(Pharma pharma:pharmaList){

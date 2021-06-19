@@ -2,6 +2,7 @@ package main.java.Service;
 
 import com.google.gson.Gson;
 
+import jdk.nashorn.internal.scripts.JO;
 import lombok.extern.slf4j.Slf4j;
 import main.java.Model.Pharma;
 
@@ -14,8 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 @Slf4j
 public class Service {
+    public enum UpdateType{
+        INSERT,
+        REMOVE,
+        CREATE
+    }
     public Service(){
 
     }
@@ -37,7 +45,7 @@ public class Service {
         log.info("Save data successful");
     }
 
-    public Pharma findPharma(String name,String group) throws IOException {
+    public Pharma FindPharma(String name,String group) throws IOException {
         String fileName= "D:\\PharmaData\\"+group+"\\"+name;
         try{
             String s= new String(Files.readAllBytes(Paths.get(fileName)));
@@ -50,7 +58,7 @@ public class Service {
         }
     }
 
-    public List<Pharma> findAllGroup(String group) throws FileNotFoundException {
+    public List<Pharma> FindAllGroup(String group) throws FileNotFoundException {
         String groupName= "D:\\PharmaData\\"+group;
         List<Pharma> ret= new ArrayList<Pharma>();
         try{
@@ -68,5 +76,30 @@ public class Service {
 //            JOptionPane.showMessageDialog(null,"Nhóm không tồn tại");
         }
         return ret;
+    }
+
+    public void UpdatePharma(Pharma pharma,UpdateType type) throws IOException {
+        Pharma existPharma= FindPharma(pharma.getName()+".json",pharma.getGroup());
+        if(existPharma==null) {
+            log.info("Pharma not exist");
+            if(type!=UpdateType.CREATE)return;
+        }else type=UpdateType.INSERT;
+
+        if(type==UpdateType.INSERT){
+            existPharma.setAmount(existPharma.getAmount()+pharma.getAmount());
+        }else if(type==UpdateType.REMOVE){
+            if(existPharma.getAmount()>=pharma.getAmount()){
+                existPharma.setAmount(existPharma.getAmount()-pharma.getAmount());
+            }else{
+                log.info("Exist is less than wanted");
+                return;
+            }
+        }else if(type==UpdateType.CREATE){
+            SavePharma(existPharma);
+        }else{
+            log.info("Update type not found");
+            return;
+        }
+        SavePharma(existPharma);
     }
 }
