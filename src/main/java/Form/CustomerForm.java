@@ -28,6 +28,7 @@ public class CustomerForm {
     private JButton finishButton;
     private JButton eraseButton;
     private JButton clearPrescriptionButton;
+    private JTextField phoneText;
     List<Pharma> prescription;
     Service service;
     String currentCustomer;
@@ -61,12 +62,12 @@ public class CustomerForm {
                     return;
                 }
 
-                if(!customerText.getText().equals(currentCustomer)){
+                if(!phoneText.getText().equals(currentCustomer)){
                     prescription= new ArrayList<>();
                     log.info("New customer, old customer was not saved");
 
-                    currentCustomer=customerText.getText();
-                    prescriptionText.setText(currentCustomer+":\n");
+                    currentCustomer=phoneText.getText();
+                    prescriptionText.setText(customerText.getText()+":\n");
                 }
                 String name= nameText.getText();
                 String group= groupText.getText();
@@ -91,7 +92,6 @@ public class CustomerForm {
                     prescription.add(currentPharma);
                     prescriptionText.append(name+"\t"+group+"\t"+amount+"\n");
                     log.info("New element was add to prescription");
-
                 }
 
 
@@ -109,6 +109,7 @@ public class CustomerForm {
                 for(Pharma pharma:prescription){
                     service.UpdatePharma(pharma, Service.UpdateType.REMOVE);
                 }
+                service.UpdateCustomer(phoneText.getText(),prescription,customerText.getText());
                 log.info("Update prescription success");
                 frame.setContentPane(mainFunction.getFormPanel());
                 frame.setBounds(100,100,450,300);

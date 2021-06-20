@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @Slf4j
 public class Prescription {
+    String phoneNumber;
     String customer;
     List<Pharma> pharmaList;
     Service service;
@@ -25,9 +26,10 @@ public class Prescription {
         pharmaList.add(pharma);
     }
 
-    void UpdatePrescription() throws IOException {
+    public void UpdatePrescription() throws IOException {
         for(Pharma pharma:pharmaList){
             service.UpdatePharma(pharma, Service.UpdateType.REMOVE);
+
         }
     }
 }

@@ -4,12 +4,15 @@ import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 import main.java.Model.Pharma;
+import main.java.Model.Prescription;
 
 import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -110,5 +113,31 @@ public class Service {
             ret.add(group.getName());
         }
         return ret;
+    }
+
+    public void UpdateCustomer(String phoneNumber,List<Pharma> prescription,String customer) throws IOException {
+        String customerFolder= "D:\\CustomerData\\";
+        String filePath= customerFolder+phoneNumber+"\\";
+        try{
+            new File(filePath).mkdir();
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Tên hoặc Nhóm phải không có kí tự đặc biệt");
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+        LocalDateTime now = LocalDateTime.now();
+        String fileName= dtf.format(now).toString();
+        fileName=filePath+fileName+".json";
+        log.info(fileName);
+        FileWriter fw= new FileWriter(fileName);
+        Gson gson= new Gson();
+        String s=customer+"\n";
+        fw.append(s);
+        for(Pharma pharma:prescription){
+            s=gson.toJson(pharma)+"\n";
+            fw.append(s);
+        }
+        fw.close();
+        log.info("Save customer successful");
     }
 }

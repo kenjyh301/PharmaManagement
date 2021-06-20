@@ -11,6 +11,8 @@ import main.java.Service.Service;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 public class PharmaManagement {
@@ -26,6 +28,7 @@ public class PharmaManagement {
 //        Pharma pharma=service.findPharma("berberin.json","thông thường");
 //        log.info(String.valueOf(pharma.getAmount()));
 //        service.findAllGroup("thông thường");
+
 
 
         frame.setContentPane(mainFunction.getFormPanel());
