@@ -18,6 +18,7 @@ import static main.java.PharmaManagement.mainFunction;
 @Data
 @Slf4j
 public class CustomerForm {
+    public static HistoryForm historyForm;
     private JTextField customerText;
     private JButton addButton;
     private JTextArea prescriptionText;
@@ -29,11 +30,13 @@ public class CustomerForm {
     private JButton eraseButton;
     private JButton clearPrescriptionButton;
     private JTextField phoneText;
+    private JButton historyButton;
     List<Pharma> prescription;
     Service service;
     String currentCustomer;
 
     public CustomerForm(JFrame frame) {
+        historyForm= new HistoryForm(frame,this);
         prescription= new ArrayList<>();
         service= new Service();
         addButton.addActionListener(new ActionListener() {
@@ -125,6 +128,20 @@ public class CustomerForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 prescription= new ArrayList<>();
+            }
+        });
+        historyButton.addActionListener(new ActionListener() {
+            /**
+             * Invoked when an action occurs.
+             *
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                historyForm.InitForm();
+                frame.setContentPane(historyForm.getFormPanel());
+                frame.pack();
+                frame.setVisible(true);
             }
         });
     }

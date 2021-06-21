@@ -1,6 +1,7 @@
 package main.java.Model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import main.java.Service.Service;
 
@@ -10,9 +11,11 @@ import java.util.List;
 
 @Data
 @Slf4j
+@NoArgsConstructor
 public class Prescription {
     String phoneNumber;
     String customer;
+    String date;
     List<Pharma> pharmaList;
     Service service;
 
@@ -22,14 +25,8 @@ public class Prescription {
         service= new Service();
     }
 
-    void AddPrescription(Pharma pharma){
+    public void AddPrescription(Pharma pharma){
         pharmaList.add(pharma);
     }
 
-    public void UpdatePrescription() throws IOException {
-        for(Pharma pharma:pharmaList){
-            service.UpdatePharma(pharma, Service.UpdateType.REMOVE);
-
-        }
-    }
 }

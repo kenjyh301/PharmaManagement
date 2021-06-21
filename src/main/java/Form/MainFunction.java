@@ -60,6 +60,7 @@ public class MainFunction {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
+                customerForm.InitForm();
                 frame.setContentPane(customerForm.getFormPanel());
                 frame.pack();
                 frame.setVisible(true);

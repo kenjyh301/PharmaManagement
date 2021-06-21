@@ -140,4 +140,44 @@ public class Service {
         fw.close();
         log.info("Save customer successful");
     }
+
+    public boolean CheckValidCustomer(String phoneNumber){
+        String customerContainFolderName= "D:\\CustomerData\\";
+        File customerFolder= new File(customerContainFolderName);
+        for(File phone:customerFolder.listFiles()){
+            if(phone.getName().equals(phoneNumber)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<Prescription> GetCustomerInfo(String phoneNumber,String customerName) throws IOException {
+        List<Prescription> prescriptions= new ArrayList<>();
+        String customerFolderName= "D:\\CustomerData\\"+phoneNumber+"\\";
+        File customerFolder= new File(customerFolderName);
+        Gson gson=new Gson();
+        for(File prescriptionFile:customerFolder.listFiles()){
+            BufferedReader fr= new BufferedReader(new FileReader(prescriptionFile));
+            String name= fr.readLine();
+            if(name.equals(customerName)){
+                while(true){
+                    Prescription prescription= new Prescription();
+                    prescription.setCustomer(customerName);
+                    prescription.setPhoneNumber(phoneNumber);
+                    prescription.setDate(prescriptionFile.getName());
+                    try{
+                        String pharmaString=fr.readLine();
+                        Pharma pharma= gson.fromJson(pharmaString,Pharma.class);
+                        prescription.AddPrescription(pharma);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        break;
+                    }
+                    prescriptions.add(prescription);
+                }
+            }
+        }
+        return prescriptions;
+    }
 }
