@@ -34,7 +34,7 @@ public class HistoryForm {
             @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
-                historyText.setText("");
+                historyText.setText("\tTên\tNhóm\tSố lượng\n");
                 String name= customerText.getText();
                 String phoneNumber= phoneNumberText.getText();
                 boolean check= service.CheckValidCustomer(phoneNumber);
@@ -68,7 +68,7 @@ public class HistoryForm {
     }
 
     void InitForm(){
-        historyText.setText("");
+        historyText.setText("\tTên\tNhóm\tSố lượng\n");
         customerText.setText("");
         phoneNumberText.setText("");
     }

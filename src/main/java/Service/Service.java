@@ -161,21 +161,23 @@ public class Service {
             BufferedReader fr= new BufferedReader(new FileReader(prescriptionFile));
             String name= fr.readLine();
             if(name.equals(customerName)){
+                Prescription prescription= new Prescription(customerName);
                 while(true){
-                    Prescription prescription= new Prescription();
-                    prescription.setCustomer(customerName);
                     prescription.setPhoneNumber(phoneNumber);
-                    prescription.setDate(prescriptionFile.getName());
+                    String date= prescriptionFile.getName();
+                    date=date.substring(0,date.length()-5);
+                    prescription.setDate(date);
                     try{
                         String pharmaString=fr.readLine();
+                        if(pharmaString.equals(""))break;
                         Pharma pharma= gson.fromJson(pharmaString,Pharma.class);
                         prescription.AddPrescription(pharma);
                     }catch (Exception e){
                         e.printStackTrace();
                         break;
                     }
-                    prescriptions.add(prescription);
                 }
+                prescriptions.add(prescription);
             }
         }
         return prescriptions;

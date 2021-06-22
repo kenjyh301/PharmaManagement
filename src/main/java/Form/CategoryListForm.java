@@ -29,7 +29,7 @@ public class CategoryListForm {
     public CategoryListForm(JFrame frame) {
 
         service = new Service();
-        searchButton = new JButton("Tìm");
+//        searchButton = new JButton("Tìm");
         InitForm();
         searchButton.addActionListener(new ActionListener() {
             /**

@@ -11,7 +11,7 @@
       <component id="9ebdc" class="javax.swing.JTextArea" binding="historyText">
         <constraints>
           <grid row="0" column="1" row-span="6" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <minimum-size width="300" height="800"/>
+            <minimum-size width="450" height="800"/>
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
