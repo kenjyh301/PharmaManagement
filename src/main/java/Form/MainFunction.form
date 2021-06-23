@@ -16,14 +16,6 @@
           <text value="Thêm danh mục"/>
         </properties>
       </component>
-      <component id="6ee94" class="javax.swing.JButton" binding="cateListButton">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Quản lý danh mục"/>
-        </properties>
-      </component>
       <component id="f4d6d" class="javax.swing.JButton" binding="addPrescriptionButton">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -42,6 +34,14 @@
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
+      <component id="6ee94" class="javax.swing.JButton" binding="cateListButton">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Quản lý danh mục"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
