@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static main.java.PharmaManagement.customerDataFolder;
+import static main.java.PharmaManagement.pharmaDataFolder;
 
 
 @Slf4j
@@ -33,7 +35,7 @@ public class Service {
     public void SavePharma(Pharma pharma) throws IOException {
         Gson gson= new Gson();
         String s= gson.toJson(pharma);
-        String filePath= "D:\\PharmaData\\"+pharma.getGroup()+"\\";
+        String filePath= pharmaDataFolder+pharma.getGroup()+"\\";
         try{
             new File(filePath).mkdir();
         }catch (Exception e){
@@ -48,7 +50,7 @@ public class Service {
     }
 
     public Pharma FindPharma(String name,String group) throws IOException {
-        String fileName= "D:\\PharmaData\\"+group+"\\"+name;
+        String fileName= pharmaDataFolder+group+"\\"+name;
         try{
             String s= new String(Files.readAllBytes(Paths.get(fileName)));
             log.info(s);
@@ -61,7 +63,7 @@ public class Service {
     }
 
     public List<Pharma> FindAllGroup(String group) throws FileNotFoundException {
-        String groupName= "D:\\PharmaData\\"+group;
+        String groupName= pharmaDataFolder+group;
         List<Pharma> ret= new ArrayList<Pharma>();
         try{
             File groupFolder= new File(groupName);
@@ -107,7 +109,7 @@ public class Service {
 
     public List<String> GetAllGroup(){
         ArrayList<String> ret=new ArrayList<String>();
-        String dataName= "D:\\PharmaData\\";
+        String dataName= pharmaDataFolder;
         File dataFolder= new File(dataName);
         for(File group:dataFolder.listFiles()){
             ret.add(group.getName());
@@ -116,7 +118,7 @@ public class Service {
     }
 
     public void UpdateCustomer(String phoneNumber,List<Pharma> prescription,String customer) throws IOException {
-        String customerFolder= "D:\\CustomerData\\";
+        String customerFolder= customerDataFolder;
         String filePath= customerFolder+phoneNumber+"\\";
         try{
             new File(filePath).mkdir();
@@ -142,7 +144,7 @@ public class Service {
     }
 
     public boolean CheckValidCustomer(String phoneNumber){
-        String customerContainFolderName= "D:\\CustomerData\\";
+        String customerContainFolderName= customerDataFolder;
         File customerFolder= new File(customerContainFolderName);
         for(File phone:customerFolder.listFiles()){
             if(phone.getName().equals(phoneNumber)){
@@ -154,7 +156,7 @@ public class Service {
 
     public List<Prescription> GetCustomerInfo(String phoneNumber,String customerName) throws IOException {
         List<Prescription> prescriptions= new ArrayList<>();
-        String customerFolderName= "D:\\CustomerData\\"+phoneNumber+"\\";
+        String customerFolderName= customerDataFolder+phoneNumber+"\\";
         File customerFolder= new File(customerFolderName);
         Gson gson=new Gson();
         for(File prescriptionFile:customerFolder.listFiles()){
