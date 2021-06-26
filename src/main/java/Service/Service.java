@@ -162,8 +162,9 @@ public class Service {
         for(File prescriptionFile:customerFolder.listFiles()){
             BufferedReader fr= new BufferedReader(new FileReader(prescriptionFile));
             String name= fr.readLine();
-            if(name.equals(customerName)){
-                Prescription prescription= new Prescription(customerName);
+            if(name.equals(customerName)||customerName.equals("")){
+                Prescription prescription= new Prescription(name);
+                if(name.equals(""))prescription.setCustomer("NoName");
                 while(true){
                     prescription.setPhoneNumber(phoneNumber);
                     String date= prescriptionFile.getName();

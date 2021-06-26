@@ -135,6 +135,7 @@ public class CustomerForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 prescription = new ArrayList<>();
+                prescriptionText.setText("");
             }
         });
         historyButton.addActionListener(new ActionListener() {
@@ -147,6 +148,7 @@ public class CustomerForm {
             public void actionPerformed(ActionEvent e) {
                 historyForm.InitForm();
                 frame.setContentPane(historyForm.getFormPanel());
+//                frame.getContentPane().add(historyForm.scrollBar);
                 frame.pack();
                 frame.setVisible(true);
             }
@@ -189,7 +191,9 @@ public class CustomerForm {
         addButton.setText("Thêm");
         formPanel.add(addButton, new GridConstraints(11, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         prescriptionText = new JTextArea();
-        formPanel.add(prescriptionText, new GridConstraints(1, 3, 10, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, 800), new Dimension(150, 50), null, 0, false));
+        Font prescriptionTextFont = this.$$$getFont$$$(null, Font.BOLD, 18, prescriptionText.getFont());
+        if (prescriptionTextFont != null) prescriptionText.setFont(prescriptionTextFont);
+        formPanel.add(prescriptionText, new GridConstraints(1, 3, 10, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, 500), new Dimension(150, 50), null, 0, false));
         finishButton = new JButton();
         finishButton.setText("Kết thúc");
         formPanel.add(finishButton, new GridConstraints(11, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

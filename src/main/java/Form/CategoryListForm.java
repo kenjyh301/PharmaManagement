@@ -137,19 +137,19 @@ public class CategoryListForm {
         groupListPanel = new JTextArea();
         Font groupListPanelFont = this.$$$getFont$$$(null, Font.BOLD, 18, groupListPanel.getFont());
         if (groupListPanelFont != null) groupListPanel.setFont(groupListPanelFont);
-        panel1.add(groupListPanel, new GridConstraints(9, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, 600), new Dimension(150, 50), null, 0, false));
+        panel1.add(groupListPanel, new GridConstraints(9, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, 400), new Dimension(150, 50), null, 0, false));
         final JLabel label3 = new JLabel();
         Font label3Font = this.$$$getFont$$$(null, Font.BOLD, 20, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
         label3.setText("Danh sách nhóm");
         panel1.add(label3, new GridConstraints(8, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        showText = new JTextArea();
-        Font showTextFont = this.$$$getFont$$$(null, Font.BOLD, 18, showText.getFont());
-        if (showTextFont != null) showText.setFont(showTextFont);
-        panel1.add(showText, new GridConstraints(0, 0, 10, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, 800), new Dimension(150, 50), null, 0, false));
         returnButton = new JButton();
         returnButton.setText("Trở về");
         panel1.add(returnButton, new GridConstraints(7, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        showText = new JTextArea();
+        Font showTextFont = this.$$$getFont$$$(null, Font.BOLD, 18, showText.getFont());
+        if (showTextFont != null) showText.setFont(showTextFont);
+        panel1.add(showText, new GridConstraints(9, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, 500), new Dimension(150, 50), null, 0, false));
     }
 
     /**

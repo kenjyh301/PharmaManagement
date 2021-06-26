@@ -32,6 +32,11 @@ public class HistoryForm {
 
     public HistoryForm(JFrame frame, CustomerForm customerForm) {
         service = new Service();
+//        scrollBar = new JScrollPane(historyText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        historyText.setLineWrap(true);
+        historyText.setWrapStyleWord(true);
+//        scrollBar.add(historyText);
+//        formPanel.add(scrollBar);
         showButton.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
@@ -51,7 +56,7 @@ public class HistoryForm {
                 }
                 List<Prescription> prescriptionList = service.GetCustomerInfo(phoneNumber, name);
                 for (Prescription prescription : prescriptionList) {
-                    historyText.append(prescription.getDate() + "\n");
+                    historyText.append(prescription.getDate() + "\t" + prescription.getCustomer() + "\n");
                     for (Pharma pharma : prescription.getPharmaList()) {
                         historyText.append("\t" + pharma.getName() + "\t" + pharma.getGroup() + "\t" + pharma.getAmount() + "\n");
                     }
@@ -66,7 +71,7 @@ public class HistoryForm {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                customerForm.InitForm();
+//                customerForm.InitForm();
                 frame.setContentPane(customerForm.getFormPanel());
                 frame.pack();
                 frame.setVisible(true);
@@ -96,9 +101,7 @@ public class HistoryForm {
      */
     private void $$$setupUI$$$() {
         formPanel = new JPanel();
-        formPanel.setLayout(new GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
-        historyText = new JTextArea();
-        formPanel.add(historyText, new GridConstraints(0, 1, 6, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(450, 800), new Dimension(150, 50), null, 0, false));
+        formPanel.setLayout(new GridLayoutManager(7, 4, new Insets(0, 0, 0, 0), -1, -1));
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$(null, -1, 20, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
@@ -113,14 +116,24 @@ public class HistoryForm {
         formPanel.add(label2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showButton = new JButton();
         showButton.setText("Hiển thị");
-        formPanel.add(showButton, new GridConstraints(6, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        formPanel.add(showButton, new GridConstraints(6, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         customerText = new JTextField();
         formPanel.add(customerText, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final Spacer spacer1 = new Spacer();
         formPanel.add(spacer1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         returnButton = new JButton();
         returnButton.setText("Trở về");
-        formPanel.add(returnButton, new GridConstraints(6, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        formPanel.add(returnButton, new GridConstraints(6, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        formPanel.add(scrollPane1, new GridConstraints(0, 2, 6, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(600, 500), new Dimension(600, 500), null, 0, false));
+        historyText = new JTextArea();
+        Font historyTextFont = this.$$$getFont$$$(null, Font.BOLD, 18, historyText.getFont());
+        if (historyTextFont != null) historyText.setFont(historyTextFont);
+        historyText.setMaximumSize(new Dimension(-1, -1));
+        historyText.setMinimumSize(new Dimension(600, 500));
+        scrollPane1.setViewportView(historyText);
+        final Spacer spacer2 = new Spacer();
+        formPanel.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     }
 
     /**

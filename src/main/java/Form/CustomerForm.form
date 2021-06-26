@@ -43,11 +43,13 @@
       <component id="f032d" class="javax.swing.JTextArea" binding="prescriptionText">
         <constraints>
           <grid row="1" column="3" row-span="10" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <minimum-size width="300" height="800"/>
+            <minimum-size width="300" height="500"/>
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="18" style="1"/>
+        </properties>
       </component>
       <component id="9548a" class="javax.swing.JButton" binding="finishButton">
         <constraints>
