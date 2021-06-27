@@ -55,6 +55,10 @@ public class CustomerForm {
             @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (phoneText.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Số điện thoại không được để trống");
+                    return;
+                }
                 if (customerText.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Khách hàng không được để trống");
                     return;
